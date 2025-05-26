@@ -34,10 +34,12 @@ body {
   height: 52px;
   margin-bottom: 10px;
 }
+
 .main-logo {
-  height: 44px;  /* 필요시 크기 조정 */
+  height: 44px;
   width: auto;
   object-fit: contain;
+  max-width: 150px;
 }
 
 .lang-toggle {
@@ -119,6 +121,13 @@ body {
   color: #fff;
 }
 
+.tpl-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #fff;
+  color: #23a6d5;
+}
+
 .recent-section {
   background: #fafafa;
   border-radius: 12px;
@@ -191,6 +200,32 @@ body {
   box-shadow: 0 0 0 2.5px #b3e6fc55;
 }
 
+.main-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #f9f9f9;
+}
+
+.translating-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #23a6d5;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.translating-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #23a6d5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
 .opt-counter {
   font-size: 14px;
   color: #666;
@@ -229,6 +264,23 @@ body {
   background: #f0f9ff;
   border-color: #23a6d5;
   font-weight: 500;
+}
+
+.opt-item select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f9f9f9;
+}
+
+.option-description {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+  padding: 6px 8px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #23a6d5;
 }
 
 .tooltip {
@@ -274,11 +326,34 @@ body {
   border: 1px solid #e0e0e0;
 }
 
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .preview-title {
   font-weight: 700;
-  margin-bottom: 9px;
   color: #6c5ce7;
   font-size: 15px;
+}
+
+.copy-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #23a6d5;
+  background: white;
+  color: #23a6d5;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #23a6d5;
+  color: white;
 }
 
 .preview-content {
@@ -290,6 +365,15 @@ body {
   min-height: 50px;
   border: 1px solid #e0e0e0;
   line-height: 1.5;
+}
+
+.copy-feedback {
+  text-align: center;
+  font-size: 13px;
+  color: #23a6d5;
+  font-weight: 500;
+  margin-top: 8px;
+  padding: 4px;
 }
 
 .btn-group {
@@ -342,6 +426,12 @@ body {
   background: #e0e0e0;
 }
 
+.reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #efefef;
+}
+
 .feedback {
   text-align: center;
   font-size: 15px;
@@ -357,33 +447,43 @@ body {
   border: 1px solid #23d5ab; 
 }
 
-.feedback.loading { 
-  background: #f0f8ff; 
-  color: #23a6d5; 
-  border: 1px solid #23a6d5; 
-}
-
 .feedback.error {
   background: #ffe6e6;
   color: #e74c3c;
   border: 1px solid #ff7675;
 }
 
-.loading-spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #ffffff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 8px;
+.dalle-btn {
+  margin-left: 10px;
+  background: #f5b041;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.dalle-btn:hover {
+  background: #e67e22;
+}
+.dalle-status {
+  color: #0984e3;
+  margin-top: 12px;
+}
+.dalle-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin: 8px 0;
+}
+.dalle-caption {
+  color: #888;
+  font-size: 13px;
+  margin-top: 6px;
+  text-align: center;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
@@ -428,6 +528,21 @@ body {
   .reset-btn {
     flex: 1;
   }
+
+  .preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .copy-btn {
+    align-self: flex-end;
+  }
+
+  .option-description {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -454,4 +569,10 @@ body {
   .title {
     font-size: 22px;
   }
+
+  .option-description {
+    font-size: 11px;
+  }
+  
+  
 }
