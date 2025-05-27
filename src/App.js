@@ -66,16 +66,210 @@ const translations = {
 const VLANET_LOGO = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiPgogIDwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyOS4zLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiAyLjEuMCBCdWlsZCAxNDYpICAtLT4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogIzAwNTlkYjsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogIzFhMWExYTsKICAgICAgfQoKICAgICAgLnN0MiB7CiAgICAgICAgZmlsbDogIzAwNGFjMTsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGc+CiAgICA8cGF0aCBjbGFzcz0ic3QyIiBkPSJNNDgzLjk0LDQ3My40MmgtMjAuMTJjLTEyLjMyLDAtMjEuMzItMTEuNjUtMTguMTktMjMuNTdsNzEuMi0yNjkuNDVjNy40MS0yOC4yNy0xMy45My01NS45MS00My4xNS01NS45MWgtMjA3LjEyYy0yOS44MiwwLTUxLjI0LDI4LjY5LTQyLjc3LDU3LjI4bDEyMS44Niw0MTEuMjhjNS42MSwxOC45NCwyMy4wMiwzMS45NCw0Mi43NywzMS45NGg1NS42N2wzOS44Ni0xNTEuNTZaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNTY4LjcxLDE1Ny42bC0zNS41OSwxMzEuMzljLTMuMzQsMTIuNTQsMi43OSwyNS42NiwxNC41NSwzMS4xNGw2MS40MywyOC42YzE5LjM4LDkuMDIsMjAuODcsMzYuMDEsMi41OSw0Ny4xMWwtMTI3Ljc2LDc3LjU4LTM5Ljg2LDE1MS41NmgyNDguNDVjMTkuNzYsMCwzNy4xNi0xMi45OSw0Mi43Ny0zMS45NGwxMjEuODYtNDExLjI4YzguNDctMjguNTktMTIuOTUtNTcuMjgtNDIuNzctNTcuMjhoLTIwMi41N2MtMjAuMjEsMC0zNy45LDEzLjU5LTQzLjEsMzMuMTJaIi8+CiAgPC9nPgogIDxnPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTIwNy4zLDkyNi4wM2w0MC42MS0xMTYuODdoMzEuNWwtNTQuNjYsMTQzLjQyaC0zNS40bC01NC40LTE0My40MmgzMS43Nmw0MC42MSwxMTYuODdaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzMxLjQ2LDc1OS45N3YxOTIuNjJoLTI5LjY3di0xOTIuNjJoMjkuNjdaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzY5LjU5LDg0MS45NmM1Ljk5LTExLjEsMTQuMTQtMTkuNzQsMjQuNDctMjUuOSwxMC4zMi02LjE2LDIxLjczLTkuMjQsMzQuMjMtOS4yNCwxMS4yOCwwLDIxLjEyLDIuMjEsMjkuNTQsNi42NCw4LjQyLDQuNDMsMTUuMTQsOS45NCwyMC4xNywxNi41M3YtMjAuODJoMjkuOTN2MTQzLjQyaC0yOS45M3YtMjEuMzRjLTUuMDMsNi43Ny0xMS44OSwxMi40MS0yMC41NiwxNi45Mi04LjY4LDQuNTEtMTguNTcsNi43Ny0yOS42Nyw2Ljc3LTEyLjMyLDAtMjMuNi0zLjE2LTMzLjg0LTkuNS0xMC4yNC02LjMzLTE4LjM1LTE1LjE4LTI0LjM0LTI2LjU1LTUuOTktMTEuMzYtOC45OC0yNC4yNS04Ljk4LTM4LjY1czIuOTktMjcuMTYsOC45OC0zOC4yNlpNNDcxLjg4LDg1NC45N2MtNC4wOC03LjI5LTkuNDItMTIuODQtMTYuMDEtMTYuNjYtNi42LTMuODItMTMuNzEtNS43My0yMS4zNC01Ljczcy0xNC43NSwxLjg3LTIxLjM0LDUuNmMtNi42LDMuNzMtMTEuOTMsOS4yLTE2LjAxLDE2LjQtNC4wOCw3LjItNi4xMiwxNS43NS02LjEyLDI1LjY0czIuMDQsMTguNTcsNi4xMiwyNi4wM2M0LjA4LDcuNDYsOS40NiwxMy4xNCwxNi4xNCwxNy4wNWM2LjY4LDMuOSwxMy43NSw1Ljg2LDIxLjIxLDUuODZzMTQuNzUtMS45MSwyMS4zNC01LjczYzYuNTktMy44MSwxMS45My05LjQxLDE2LjAxLTE2Ljc5LDQuMDgtNy4zNyw2LjEyLTE2LjAxLDYuMTItMjUuOXMtMi4wNC0xOC40OC02LjEyLTI1Ljc3WiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTY0OS42Niw4MTMuODVjOC45Myw0LjY5LDE1LjkyLDExLjYzLDIwLjk1LDIwLjgyLDUuMDMsOS4yLDcuNTUsMjAuMyw3LjU1LDMzLjMydjg0LjU5aC0yOS40MXYtODAuMTdjMC0xMi44NC0zLjIxLTIyLjY5LTkuNjMtMjkuNTQtNi40Mi02Ljg1LTE1LjE5LTEwLjI4LTI2LjI5LTEwLjI4cy0xOS45MSwzLjQzLTI2LjQyLDEwLjI4Yy02LjUxLDYuODYtOS43NiwxNi43LTkuNzYsMjkuNTR2ODAuMTdoLTI5LjY3di0xNDMuNDJoMjkuNjd2MTYuNGM0Ljg2LTUuOSwxMS4wNi0xMC41LDE4LjYxLTEzLjgsNy41NS0zLjI5LDE1LjU3LTQuOTUsMjQuMDgtNC45NSwxMS4yOCwwLDIxLjM4LDIuMzQsMzAuMzIsNy4wM1oiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik04NDYuMzEsODkxLjkzaC0xMDkuNThjLjg3LDExLjQ1LDUuMTIsMjAuNjUsMTIuNzYsMjcuNTksNy42Myw2Ljk0LDE3LDEwLjQxLDI4LjExLDEwLjQxLDE1Ljk2LDAsMjcuMjQtNi42OCwzMy44NC0yMC4wNGgzMi4wMmMtNC4zNCwxMy4xOS0xMi4xOSwyMy45OS0yMy41NiwzMi40MS0xMS4zNyw4LjQyLTI1LjQ3LDEyLjYyLTQyLjMsMTIuNjItMTMuNzEsMC0yNS45OS0zLjA4LTM2LjgzLTkuMjQtMTAuODUtNi4xNi0xOS4zNS0xNC44NC0yNS41MS0yNi4wMy02LjE2LTExLjE5LTkuMjQtMjQuMTYtOS4yNC0zOC45MXMyLjk5LTI3LjcyLDguOTgtMzguOTFjNS45OS0xMS4xOSwxNC40LTE5LjgyLDI1LjI1LTI1LjksMTAuODQtNi4wNywyMy4zLTkuMTEsMzcuMzUtOS4xMXMyNS41OSwyLjk1LDM2LjE4LDguODVjMTAuNTgsNS45LDE4LjgzLDE0LjE5LDI0LjczLDI0Ljg2LDUuOSwxMC42Nyw4Ljg1LDIyLjk1LDguODUsMzYuODMsMCw1LjM4LS4zNSwxMC4yNC0xLjA0LDE0LjU4Wk04MTYuMzgsODY3Ljk5Yy0uMTgtMTAuOTMtNC4wOC0xOS42OS0xMS43MS0yNi4yOS03LjY0LTYuNTktMTcuMDktOS44OS0yOC4zNy05Ljg5LTEwLjI0LDAtMTksMy4yNS0yNi4yOSw9Ljc2LTcuMjksNi41MS0xMS42MywxNS4zMi0xMy4wMiwyNi40Mmg3OS4zOVoiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik05MTEuMTIsODMzLjM3djc5LjM5YzAsNS4zOCwxLjI2LDkuMjQsMy43OCwxMS41OCwyLjUxLDIuMzQsNi44MSwzLjUxLDEyLjg4LDMuNTFoMTguMjJ2MjQuNzNoLTIzLjQzYy0xMy4zNiwwLTIzLjYtMy4xMi0zMC43MS05LjM3LTcuMTItNi4yNS0xMC42Ny0xNi40LTEwLjY3LTMwLjQ1di03OS4zOWgtMTYuOTJ2LTI0LjIxaDE2Ljkydi0zNS42NmgyOS45M3YzNS42NmgzNC44OHYyNC4yMWgtMzQuODhaIi8+CiAgPC9nPgo8L3N2Zz4=";
 
 const optionCategories = [
-  { id: "camera", label: { ko: "카메라", en: "Camera" }, tooltip: { ko: "전문 영화 제작에 사용되는 카메라를 선택하세요", en: "Select professional cameras used in film production" }, options: [ 'Arri Alexa Mini', 'RED Komodo 6K', 'Sony FX3', 'Canon C300 Mark III', 'Sony Venice', 'Blackmagic URSA Mini', 'RED V-Raptor', 'Canon R5C', 'Sony FX6', 'Panasonic EVA1', 'Z CAM E2-F6', 'Arri Amira' ] },
-  { id: "lens", label: { ko: "렌즈", en: "Lens" }, tooltip: { ko: "원하는 화각과 깊이감을 위한 렌즈를 선택하세요", en: "Select lens for desired field of view and depth" }, options: [ '35mm f1.4', '50mm f1.2', '85mm f1.8', '24-70mm f2.8', '16mm Wide', '135mm Telephoto', '14mm Ultra Wide', '100mm Macro', '70-200mm f2.8', '24mm f1.4', '18-35mm Zoom', '200mm f2.8' ] },
-  { id: "movement", label: { ko: "카메라 워킹", en: "Camera Movement" }, tooltip: { ko: "카메라의 움직임을 선택하세요", en: "Select camera movement style" }, options: [ 'Handheld', 'Steadicam', 'Dolly In', 'Dolly Out', 'Drone Shot', 'Static Shot', 'Gimbal Orbit', 'Crane Up', 'Crane Down', 'Slider Left', 'Slider Right', 'POV Shot', 'Tracking Shot', 'Jib Movement' ] },
-  { id: "composition", label: { ko: "구도", en: "Composition" }, tooltip: { ko: "화면 구성 방식을 선택하세요", en: "Select composition technique" }, options: [ 'Rule of Thirds', 'Center Composition', 'Low Angle', 'High Angle', 'Close-up', 'Wide Shot', 'Medium Shot', 'Over-the-Shoulder', 'Dutch Angle', 'Symmetry', 'Leading Lines', 'Negative Space' ] },
-  { id: "lighting", label: { ko: "조명", en: "Lighting" }, tooltip: { ko: "조명 스타일을 선택하세요", en: "Select lighting style" }, options: [ 'Natural Light', 'Golden Hour', 'Low Key', 'High Key', 'Backlight', 'Soft Light', 'Hard Light', 'Rembrandt Light', 'Color Gel', 'Practical Light', 'Ring Light', 'Studio Light', 'Candle Light', 'Neon Light' ] },
-  { id: "color", label: { ko: "색감", en: "Color" }, tooltip: { ko: "색감 스타일을 선택하세요", en: "Select color grading style" }, options: [ 'Warm', 'Cool', 'Neutral', 'Vivid', 'Muted', 'Cinematic Teal-Orange', 'Black & White', 'Sepia', 'Analog Film', 'Retro', 'Desaturated', 'High Contrast', 'Pastel', 'Monochrome' ] },
-  { id: "tone", label: { ko: "톤/매너", en: "Tone/Mood" }, tooltip: { ko: "영상의 분위기를 선택하세요", en: "Select video mood and tone" }, options: [ 'Cinematic', 'Dramatic', 'Bright', 'Moody', 'Romantic', 'Epic', 'Mysterious', 'Energetic', 'Peaceful', 'Nostalgic', 'Surreal', 'Realistic', 'Dreamy', 'Intense' ] },
-  { id: "time", label: { ko: "시간/날씨", en: "Time/Weather" }, tooltip: { ko: "시간대와 날씨를 선택하세요", en: "Select time of day and weather" }, options: [ 'Golden Hour', 'Day', 'Night', 'Sunset', 'Sunrise', 'Blue Hour', 'Rainy', 'Foggy', 'Snowy', 'Stormy', 'Overcast', 'Clear Sky', 'Twilight', 'Dawn', 'Midday' ] },
-  { id: "style", label: { ko: "아트 스타일", en: "Art Style" }, tooltip: { ko: "영상의 아트 스타일을 선택하세요", en: "Select the art style for your video" }, options: [ 'Photorealistic', 'Pixar 3D Animation', 'Disney 2D Animation', 'Anime Style', 'Studio Ghibli', 'Cartoon Style', 'Watercolor Painting', 'Oil Painting', 'Pencil Sketch', 'Digital Art', 'Pixel Art', 'Clay Animation', 'Paper Cutout', 'Comic Book Style', 'Minimalist Illustration' ] },
-  { id: "resolution", label: { ko: "해상도/포맷", en: "Resolution/Format" }, tooltip: { ko: "영상 해상도와 용도를 선택하세요", en: "Select video resolution and purpose" }, options: [ '4K Cinematic', '1080p Standard', 'Instagram 9:16', 'YouTube 16:9', 'TikTok Square', '8K Ultra', 'Cinematic 2.35:1', 'Widescreen 21:9', 'Portrait 4:5', 'Classic 4:3', 'Ultra Wide 32:9', 'Mobile Vertical' ] }
+  { 
+    id: "camera", 
+    label: { ko: "카메라", en: "Camera" }, 
+    tooltip: { ko: "전문 영화 제작에 사용되는 카메라를 선택하세요", en: "Select professional cameras used in film production" }, 
+    options: [ 
+      { value: 'Arri Alexa Mini', desc: { ko: '할리우드 영화에서 가장 많이 사용되는 프리미엄 카메라', en: 'Premium camera most used in Hollywood films' } },
+      { value: 'RED Komodo 6K', desc: { ko: '6K 해상도로 세밀한 디테일을 캡처하는 고급 카메라', en: 'High-end camera capturing fine details in 6K resolution' } },
+      { value: 'Sony FX3', desc: { ko: '콘텐츠 크리에이터에게 인기 있는 소형 풀프레임 카메라', en: 'Compact full-frame camera popular with content creators' } },
+      { value: 'Canon C300 Mark III', desc: { ko: '방송과 영화 제작에 널리 사용되는 전문가용 카메라', en: 'Professional camera widely used in broadcasting and filmmaking' } },
+      { value: 'Sony Venice', desc: { ko: '블록버스터 영화 촬영에 사용되는 최고급 시네마 카메라', en: 'Top-tier cinema camera used for blockbuster film production' } },
+      { value: 'Blackmagic URSA Mini', desc: { ko: '합리적인 가격의 프로페셔널 4K 카메라', en: 'Affordable professional 4K camera' } },
+      { value: 'RED V-Raptor', desc: { ko: '8K 촬영이 가능한 최신 고성능 카메라', en: 'Latest high-performance camera capable of 8K recording' } },
+      { value: 'Canon R5C', desc: { ko: '사진과 영상을 모두 커버하는 하이브리드 카메라', en: 'Hybrid camera covering both photography and videography' } },
+      { value: 'Sony FX6', desc: { ko: '다큐멘터리와 뉴스 촬영에 최적화된 카메라', en: 'Camera optimized for documentary and news shooting' } },
+      { value: 'Panasonic EVA1', desc: { ko: '영화적 화질을 제공하는 컴팩트 시네마 카메라', en: 'Compact cinema camera providing cinematic image quality' } },
+      { value: 'Z CAM E2-F6', desc: { ko: '넷플릭스 승인을 받은 6K 풀프레임 카메라', en: 'Netflix-approved 6K full-frame camera' } },
+      { value: 'Arri Amira', desc: { ko: '다큐멘터리와 방송용으로 설계된 견고한 카메라', en: 'Robust camera designed for documentary and broadcast use' } }
+    ]
+  },
+  { 
+    id: "lens", 
+    label: { ko: "렌즈", en: "Lens" }, 
+    tooltip: { ko: "원하는 화각과 깊이감을 위한 렌즈를 선택하세요", en: "Select lens for desired field of view and depth" }, 
+    options: [
+      { value: '35mm f1.4', desc: { ko: '자연스러운 시야각과 아름다운 보케를 제공하는 표준 렌즈', en: 'Standard lens providing natural field of view and beautiful bokeh' } },
+      { value: '50mm f1.2', desc: { ko: '인물 촬영에 최적화된 밝은 표준 렌즈', en: 'Bright standard lens optimized for portrait photography' } },
+      { value: '85mm f1.8', desc: { ko: '배경 분리가 뛰어난 인물 전용 망원 렌즈', en: 'Portrait telephoto lens with excellent background separation' } },
+      { value: '24-70mm f2.8', desc: { ko: '다양한 상황에 대응 가능한 만능 줌 렌즈', en: 'Versatile zoom lens capable of handling various situations' } },
+      { value: '16mm Wide', desc: { ko: '넓은 공간과 풍경을 담는 초광각 렌즈', en: 'Ultra-wide lens for capturing vast spaces and landscapes' } },
+      { value: '135mm Telephoto', desc: { ko: '원거리 피사체를 크게 담는 망원 렌즈', en: 'Telephoto lens for capturing distant subjects up close' } },
+      { value: '14mm Ultra Wide', desc: { ko: '극도로 넓은 시야각을 제공하는 어안 렌즈', en: 'Fisheye lens providing extremely wide field of view' } },
+      { value: '100mm Macro', desc: { ko: '미세한 디테일을 크게 확대하는 접사 렌즈', en: 'Macro lens for extreme close-up detail magnification' } },
+      { value: '70-200mm f2.8', desc: { ko: '스포츠와 야생동물 촬영에 이상적인 망원 줌', en: 'Telephoto zoom ideal for sports and wildlife photography' } },
+      { value: '24mm f1.4', desc: { ko: '풍경과 건축물 촬영에 적합한 광각 렌즈', en: 'Wide-angle lens suitable for landscape and architecture' } },
+      { value: '18-35mm Zoom', desc: { ko: '광각부터 표준까지 커버하는 다용도 줌 렌즈', en: 'Versatile zoom lens covering wide to standard focal lengths' } },
+      { value: '200mm f2.8', desc: { ko: '프로 스포츠 촬영용 고성능 망원 렌즈', en: 'High-performance telephoto lens for professional sports' } }
+    ]
+  },
+  { 
+    id: "movement", 
+    label: { ko: "카메라 워킹", en: "Camera Movement" }, 
+    tooltip: { ko: "카메라의 움직임을 선택하세요", en: "Select camera movement style" }, 
+    options: [
+      { value: 'Handheld', desc: { ko: '손으로 들고 촬영하여 자연스럽고 역동적인 느낌', en: 'Natural and dynamic feel from hand-held shooting' } },
+      { value: 'Steadicam', desc: { ko: '부드럽고 안정적인 움직임을 제공하는 안정화 장비', en: 'Stabilization equipment providing smooth and stable movement' } },
+      { value: 'Dolly In', desc: { ko: '피사체를 향해 카메라가 앞으로 이동하는 기법', en: 'Camera moving forward towards the subject' } },
+      { value: 'Dolly Out', desc: { ko: '피사체에서 멀어지며 더 넓은 시야를 보여주는 기법', en: 'Camera moving away to reveal a wider view' } },
+      { value: 'Drone Shot', desc: { ko: '드론을 이용한 공중 촬영으로 웅장한 스케일 연출', en: 'Aerial filming with drones for grand scale cinematography' } },
+      { value: 'Static Shot', desc: { ko: '고정된 카메라로 안정적이고 집중적인 구도', en: 'Fixed camera for stable and focused composition' } },
+      { value: 'Gimbal Orbit', desc: { ko: '피사체 주변을 원형으로 회전하는 짐벌 촬영', en: 'Gimbal shooting rotating in a circle around the subject' } },
+      { value: 'Crane Up', desc: { ko: '카메라가 위로 올라가며 시야가 확장되는 효과', en: 'Camera rising upward with expanding field of view' } },
+      { value: 'Crane Down', desc: { ko: '카메라가 아래로 내려가며 피사체에 집중하는 효과', en: 'Camera descending downward focusing on the subject' } },
+      { value: 'Slider Left', desc: { ko: '좌측으로 수평 이동하는 부드러운 슬라이더 촬영', en: 'Smooth slider movement to the left' } },
+      { value: 'Slider Right', desc: { ko: '우측으로 수평 이동하는 부드러운 슬라이더 촬영', en: 'Smooth slider movement to the right' } },
+      { value: 'POV Shot', desc: { ko: '등장인물의 시점에서 촬영하는 주관적 시점', en: 'Subjective viewpoint from character\'s perspective' } },
+      { value: 'Tracking Shot', desc: { ko: '움직이는 피사체를 따라가며 촬영하는 기법', en: 'Following a moving subject while filming' } },
+      { value: 'Jib Movement', desc: { ko: '지브 암을 이용한 역동적인 상하 움직임', en: 'Dynamic vertical movement using jib arm' } }
+    ]
+  },
+  { 
+    id: "composition", 
+    label: { ko: "구도", en: "Composition" }, 
+    tooltip: { ko: "화면 구성 방식을 선택하세요", en: "Select composition technique" }, 
+    options: [
+      { value: 'Rule of Thirds', desc: { ko: '화면을 9등분하여 교차점에 주요 요소를 배치', en: 'Dividing frame into nine parts and placing key elements at intersections' } },
+      { value: 'Center Composition', desc: { ko: '화면 중앙에 주요 피사체를 배치하는 안정적 구도', en: 'Stable composition placing main subject at center of frame' } },
+      { value: 'Low Angle', desc: { ko: '낮은 위치에서 올려다보며 위엄과 파워를 표현', en: 'Shooting from low position looking up to express majesty and power' } },
+      { value: 'High Angle', desc: { ko: '높은 위치에서 내려다보며 전체적인 상황을 조망', en: 'Shooting from high position looking down for overall perspective' } },
+      { value: 'Close-up', desc: { ko: '피사체의 세부적인 디테일을 강조하는 근접 촬영', en: 'Close shooting emphasizing detailed features of subject' } },
+      { value: 'Wide Shot', desc: { ko: '피사체와 주변 환경을 모두 포함하는 원경 촬영', en: 'Long shot including both subject and surrounding environment' } },
+      { value: 'Medium Shot', desc: { ko: '피사체의 상반신을 중심으로 한 중간 거리 촬영', en: 'Medium distance shot focusing on subject\'s upper body' } },
+      { value: 'Over-the-Shoulder', desc: { ko: '한 인물의 어깨 너머로 상대방을 바라보는 구도', en: 'Viewing another person over one character\'s shoulder' } },
+      { value: 'Dutch Angle', desc: { ko: '카메라를 기울여 불안감이나 역동성을 표현', en: 'Tilting camera to express unease or dynamism' } },
+      { value: 'Symmetry', desc: { ko: '좌우 대칭의 균형 잡힌 안정적인 구도', en: 'Balanced and stable composition with left-right symmetry' } },
+      { value: 'Leading Lines', desc: { ko: '선을 이용해 시선을 주요 피사체로 유도하는 기법', en: 'Using lines to guide viewer\'s attention to main subject' } },
+      { value: 'Negative Space', desc: { ko: '여백을 활용해 피사체를 더욱 돋보이게 하는 구도', en: 'Using empty space to make subject stand out more' } }
+    ]
+  },
+  { 
+    id: "lighting", 
+    label: { ko: "조명", en: "Lighting" }, 
+    tooltip: { ko: "조명 스타일을 선택하세요", en: "Select lighting style" }, 
+    options: [
+      { value: 'Natural Light', desc: { ko: '자연광을 활용한 부드럽고 현실적인 조명', en: 'Soft and realistic lighting using natural sunlight' } },
+      { value: 'Golden Hour', desc: { ko: '해 뜨거나 질 때의 따뜻하고 로맨틱한 금빛 조명', en: 'Warm and romantic golden lighting during sunrise/sunset' } },
+      { value: 'Low Key', desc: { ko: '어둠을 강조한 드라마틱하고 신비로운 조명', en: 'Dramatic and mysterious lighting emphasizing darkness' } },
+      { value: 'High Key', desc: { ko: '밝고 깨끗한 조명으로 긍정적인 분위기 연출', en: 'Bright and clean lighting creating positive atmosphere' } },
+      { value: 'Backlight', desc: { ko: '피사체 뒤에서 비추는 역광으로 실루엣 효과', en: 'Backlighting creating silhouette effect from behind subject' } },
+      { value: 'Soft Light', desc: { ko: '부드럽게 확산된 조명으로 자연스러운 피부톤', en: 'Gently diffused lighting for natural skin tones' } },
+      { value: 'Hard Light', desc: { ko: '강렬하고 명확한 그림자를 만드는 직접 조명', en: 'Direct lighting creating strong and clear shadows' } },
+      { value: 'Rembrandt Light', desc: { ko: '한쪽 뺨에 삼각형 하이라이트를 만드는 클래식 조명', en: 'Classic lighting creating triangular highlight on one cheek' } },
+      { value: 'Color Gel', desc: { ko: '컬러 필터를 사용한 창의적이고 감정적인 조명', en: 'Creative and emotional lighting using color filters' } },
+      { value: 'Practical Light', desc: { ko: '촛불, 전등 등 화면 속 실제 광원을 활용', en: 'Using actual light sources in scene like candles, lamps' } },
+      { value: 'Ring Light', desc: { ko: '고리 모양 조명으로 균등하고 부드러운 효과', en: 'Ring-shaped lighting for even and soft effect' } },
+      { value: 'Studio Light', desc: { ko: '스튜디오 환경의 완벽하게 제어된 조명', en: 'Perfectly controlled lighting in studio environment' } },
+      { value: 'Candle Light', desc: { ko: '촛불의 따뜻하고 로맨틱한 분위기 조명', en: 'Warm and romantic atmosphere from candlelight' } },
+      { value: 'Neon Light', desc: { ko: '네온사인의 화려하고 미래적인 조명 효과', en: 'Colorful and futuristic lighting effect from neon signs' } }
+    ]
+  },
+  { 
+    id: "color", 
+    label: { ko: "색감", en: "Color" }, 
+    tooltip: { ko: "색감 스타일을 선택하세요", en: "Select color grading style" }, 
+    options: [
+      { value: 'Warm', desc: { ko: '주황과 노랑 계열의 따뜻하고 포근한 색감', en: 'Warm and cozy tones with orange and yellow hues' } },
+      { value: 'Cool', desc: { ko: '파랑과 청록 계열의 차갑고 시원한 색감', en: 'Cool and refreshing tones with blue and cyan hues' } },
+      { value: 'Neutral', desc: { ko: '자연스럽고 균형 잡힌 중성적인 색감', en: 'Natural and balanced neutral color palette' } },
+      { value: 'Vivid', desc: { ko: '채도가 높은 생생하고 화려한 색감', en: 'Bright and vibrant colors with high saturation' } },
+      { value: 'Muted', desc: { ko: '채도를 낮춘 차분하고 세련된 색감', en: 'Calm and sophisticated colors with reduced saturation' } },
+      { value: 'Cinematic Teal-Orange', desc: { ko: '영화에서 자주 사용되는 청록-주황 대비 색감', en: 'Teal-orange contrast commonly used in cinema' } },
+      { value: 'Black & White', desc: { ko: '클래식하고 시간을 초월한 흑백 톤', en: 'Classic and timeless black and white tones' } },
+      { value: 'Sepia', desc: { ko: '갈색 톤의 빈티지하고 향수를 불러일으키는 색감', en: 'Brown-toned vintage and nostalgic color palette' } },
+      { value: 'Analog Film', desc: { ko: '필름 카메라 특유의 따뜻한 아날로그 색감', en: 'Warm analog color characteristic of film cameras' } },
+      { value: 'Retro', desc: { ko: '80-90년대 스타일의 복고풍 색감', en: 'Retro color style reminiscent of 80s-90s' } },
+      { value: 'Desaturated', desc: { ko: '채도를 줄여 현실적이고 자연스러운 색감', en: 'Realistic and natural colors with reduced saturation' } },
+      { value: 'High Contrast', desc: { ko: '명암 대비가 강한 임팩트 있는 색감', en: 'Impactful colors with strong contrast' } },
+      { value: 'Pastel', desc: { ko: '부드럽고 연한 파스텔 톤의 색감', en: 'Soft and light pastel tone colors' } },
+      { value: 'Monochrome', desc: { ko: '단일 색조로 통일된 미니멀한 색감', en: 'Minimal color palette unified in single tone' } }
+    ]
+  },
+  { 
+    id: "tone", 
+    label: { ko: "톤/매너", en: "Tone/Mood" }, 
+    tooltip: { ko: "영상의 분위기를 선택하세요", en: "Select video mood and tone" }, 
+    options: [
+      { value: 'Cinematic', desc: { ko: '영화 같은 웅장하고 감동적인 분위기', en: 'Grand and moving atmosphere like a movie' } },
+      { value: 'Dramatic', desc: { ko: '강렬하고 감정적인 드라마틱한 분위기', en: 'Intense and emotional dramatic atmosphere' } },
+      { value: 'Bright', desc: { ko: '밝고 활기찬 긍정적인 분위기', en: 'Bright and energetic positive atmosphere' } },
+      { value: 'Moody', desc: { ko: '음울하고 사색적인 감성적 분위기', en: 'Dark and contemplative emotional atmosphere' } },
+      { value: 'Romantic', desc: { ko: '로맨틱하고 달콤한 사랑스러운 분위기', en: 'Romantic and sweet loving atmosphere' } },
+      { value: 'Epic', desc: { ko: '웅장하고 장엄한 서사적 분위기', en: 'Grand and majestic epic atmosphere' } },
+      { value: 'Mysterious', desc: { ko: '신비롭고 궁금증을 자아내는 분위기', en: 'Mysterious and intriguing atmosphere' } },
+      { value: 'Energetic', desc: { ko: '역동적이고 활력 넘치는 분위기', en: 'Dynamic and vibrant atmosphere' } },
+      { value: 'Peaceful', desc: { ko: '평화롭고 고요한 힐링 분위기', en: 'Peaceful and serene healing atmosphere' } },
+      { value: 'Nostalgic', desc: { ko: '향수를 불러일으키는 그리운 분위기', en: 'Nostalgic atmosphere evoking memories' } },
+      { value: 'Surreal', desc: { ko: '초현실적이고 환상적인 분위기', en: 'Surreal and fantastical atmosphere' } },
+      { value: 'Realistic', desc: { ko: '현실적이고 자연스러운 분위기', en: 'Realistic and natural atmosphere' } },
+      { value: 'Dreamy', desc: { ko: '몽환적이고 꿈같은 분위기', en: 'Dreamy and ethereal atmosphere' } },
+      { value: 'Intense', desc: { ko: '긴장감 넘치고 강렬한 분위기', en: 'Tense and intense atmosphere' } }
+    ]
+  },
+  { 
+    id: "time", 
+    label: { ko: "시간/날씨", en: "Time/Weather" }, 
+    tooltip: { ko: "시간대와 날씨를 선택하세요", en: "Select time of day and weather" }, 
+    options: [
+      { value: 'Golden Hour', desc: { ko: '해 뜨거나 질 때의 황금빛 마법 같은 시간', en: 'Magical golden time during sunrise or sunset' } },
+      { value: 'Day', desc: { ko: '밝고 선명한 대낮의 자연광', en: 'Bright and clear natural light of midday' } },
+      { value: 'Night', desc: { ko: '어둠 속에서 인공 조명이 돋보이는 밤', en: 'Night where artificial lighting stands out in darkness' } },
+      { value: 'Sunset', desc: { ko: '하늘이 붉게 물드는 로맨틱한 일몰', en: 'Romantic sunset with sky painted red' } },
+      { value: 'Sunrise', desc: { ko: '새로운 시작을 알리는 희망찬 일출', en: 'Hopeful sunrise announcing new beginnings' } },
+      { value: 'Blue Hour', desc: { ko: '해가 진 직후 파란 하늘이 아름다운 시간', en: 'Beautiful time with blue sky right after sunset' } },
+      { value: 'Rainy', desc: { ko: '비가 내리는 감성적이고 분위기 있는 날씨', en: 'Emotional and atmospheric rainy weather' } },
+      { value: 'Foggy', desc: { ko: '안개가 자욱한 신비롭고 몽환적인 날씨', en: 'Mysterious and dreamy weather with thick fog' } },
+      { value: 'Snowy', desc: { ko: '눈이 내리는 순수하고 아름다운 겨울 날씨', en: 'Pure and beautiful winter weather with falling snow' } },
+      { value: 'Stormy', desc: { ko: '폭풍이 몰아치는 역동적이고 드라마틱한 날씨', en: 'Dynamic and dramatic weather with raging storms' } },
+      { value: 'Overcast', desc: { ko: '구름이 낀 차분하고 편안한 흐린 날씨', en: 'Calm and comfortable cloudy weather' } },
+      { value: 'Clear Sky', desc: { ko: '구름 한 점 없는 맑고 깨끗한 하늘', en: 'Clear and clean sky without a single cloud' } },
+      { value: 'Twilight', desc: { ko: '해 질 무렵의 황혼이 아름다운 시간', en: 'Beautiful twilight time around sunset' } },
+      { value: 'Dawn', desc: { ko: '새벽의 고요하고 평화로운 시간', en: 'Quiet and peaceful time of dawn' } },
+      { value: 'Midday', desc: { ko: '태양이 가장 높이 떠 있는 정오', en: 'Noon when the sun is at its highest point' } }
+    ]
+  },
+  { 
+    id: "style", 
+    label: { ko: "아트 스타일", en: "Art Style" }, 
+    tooltip: { ko: "영상의 아트 스타일을 선택하세요", en: "Select the art style for your video" }, 
+    options: [
+      { value: 'Photorealistic', desc: { ko: '실제 사진처럼 사실적이고 현실적인 스타일', en: 'Realistic style that looks like actual photography' } },
+      { value: 'Pixar 3D Animation', desc: { ko: '픽사 영화 같은 귀엽고 완성도 높은 3D 애니메이션', en: 'Cute and high-quality 3D animation like Pixar movies' } },
+      { value: 'Disney 2D Animation', desc: { ko: '디즈니 클래식 같은 전통적인 2D 애니메이션', en: 'Traditional 2D animation like Disney classics' } },
+      { value: 'Anime Style', desc: { ko: '일본 애니메이션 특유의 스타일과 감성', en: 'Unique style and emotion of Japanese animation' } },
+      { value: 'Studio Ghibli', desc: { ko: '지브리 스튜디오의 따뜻하고 감성적인 스타일', en: 'Warm and emotional style of Studio Ghibli' } },
+      { value: 'Cartoon Style', desc: { ko: '단순화되고 과장된 만화 스타일', en: 'Simplified and exaggerated cartoon style' } },
+      { value: 'Watercolor Painting', desc: { ko: '수채화의 부드럽고 투명한 질감', en: 'Soft and transparent texture of watercolor painting' } },
+      { value: 'Oil Painting', desc: { ko: '유화의 진하고 풍부한 색감과 질감', en: 'Rich colors and textures of oil painting' } },
+      { value: 'Pencil Sketch', desc: { ko: '연필 스케치의 섬세하고 자연스러운 선', en: 'Delicate and natural lines of pencil sketch' } },
+      { value: 'Digital Art', desc: { ko: '디지털로 제작된 현대적이고 세련된 아트', en: 'Modern and sophisticated art created digitally' } },
+      { value: 'Pixel Art', desc: { ko: '8비트 게임 같은 픽셀 아트 스타일', en: 'Pixel art style like 8-bit games' } },
+      { value: 'Clay Animation', desc: { ko: '클레이로 만든 입체적이고 독특한 애니메이션', en: 'Three-dimensional and unique animation made with clay' } },
+      { value: 'Paper Cutout', desc: { ko: '종이를 오려 만든 독창적인 애니메이션', en: 'Creative animation made by cutting paper' } },
+      { value: 'Comic Book Style', desc: { ko: '만화책의 대화창과 효과음이 있는 스타일', en: 'Style with speech bubbles and sound effects like comic books' } },
+      { value: 'Minimalist Illustration', desc: { ko: '간결하고 단순한 미니멀리스트 일러스트', en: 'Clean and simple minimalist illustration' } }
+    ]
+  },
+  { 
+    id: "resolution", 
+    label: { ko: "해상도/포맷", en: "Resolution/Format" }, 
+    tooltip: { ko: "영상 해상도와 용도를 선택하세요", en: "Select video resolution and purpose" }, 
+    options: [
+      { value: '4K Cinematic', desc: { ko: '영화관 상영에 적합한 최고 화질의 4K 해상도', en: '4K resolution with highest quality suitable for cinema screening' } },
+      { value: '1080p Standard', desc: { ko: '일반적인 온라인 콘텐츠에 적합한 풀HD 해상도', en: 'Full HD resolution suitable for general online content' } },
+      { value: 'Instagram 9:16', desc: { ko: '인스타그램 스토리와 릴스에 최적화된 세로 형태', en: 'Vertical format optimized for Instagram stories and reels' } },
+      { value: 'YouTube 16:9', desc: { ko: '유튜브 업로드에 최적화된 가로 형태', en: 'Horizontal format optimized for YouTube upload' } },
+      { value: 'TikTok Square', desc: { ko: '틱톡과 SNS에 적합한 정사각형 형태', en: 'Square format suitable for TikTok and social media' } },
+      { value: '8K Ultra', desc: { ko: '미래형 초고화질 8K 해상도', en: 'Futuristic ultra-high-definition 8K resolution' } },
+      { value: 'Cinematic 2.35:1', desc: { ko: '영화관에서 사용되는 와이드스크린 시네마스코프 비율', en: 'Widescreen cinemascope ratio used in theaters' } },
+      { value: 'Widescreen 21:9', desc: { ko: '울트라와이드 모니터에 최적화된 비율', en: 'Ratio optimized for ultra-wide monitors' } },
+      { value: 'Portrait 4:5', desc: { ko: '인스타그램 피드에 적합한 세로 비율', en: 'Vertical ratio suitable for Instagram feed' } },
+      { value: 'Classic 4:3', desc: { ko: '클래식 TV와 모니터의 전통적인 비율', en: 'Traditional ratio of classic TV and monitors' } },
+      { value: 'Ultra Wide 32:9', desc: { ko: '극도로 넓은 파노라마 형태의 비율', en: 'Extremely wide panoramic format ratio' } },
+      { value: 'Mobile Vertical', desc: { ko: '모바일 세로 화면에 최적화된 형태', en: 'Format optimized for mobile vertical screens' } }
+    ]
+  }
 ];
 
 const templates = [
@@ -751,7 +945,13 @@ function App() {
                   >
                     <option value="">{cat.label[lang]}</option>
                     {cat.options.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
+                      <option 
+                        key={opt.value} 
+                        value={opt.value}
+                        title={opt.desc[lang]}
+                      >
+                        {opt.value}
+                      </option>
                     ))}
                   </select>
                   <div 
@@ -775,6 +975,22 @@ function App() {
                   >
                     ?
                   </div>
+                  
+                  {/* 선택된 옵션의 설명 표시 */}
+                  {selections[cat.id] && (
+                    <div style={{
+                      marginTop: '5px',
+                      padding: '8px 12px',
+                      background: '#f0f8ff',
+                      border: '1px solid #e0e8f0',
+                      borderRadius: '8px',
+                      fontSize: '11px',
+                      color: '#555',
+                      lineHeight: '1.4'
+                    }}>
+                      💡 {cat.options.find(opt => opt.value === selections[cat.id])?.desc[lang]}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
