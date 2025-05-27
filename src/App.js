@@ -378,6 +378,36 @@ function App() {
   const t = translations[lang];
   const selectedCount = Object.values(selections).filter(Boolean).length;
 
+  // 🎯 브라우저 탭 제목과 파비콘 설정
+  useEffect(() => {
+    // 페이지 제목 설정
+    document.title = '브이래닛 - AI 영상 프롬프트 생성기';
+    
+    // 파비콘 설정 (브이래닛 로고 사용)
+    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = VLANET_LOGO;
+    document.getElementsByTagName('head')[0].appendChild(link);
+
+    // 메타 태그 설정
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = '브이래닛 AI 영상 프롬프트 생성기 - 간단한 아이디어로 전문가급 영상 프롬프트를 자동 생성하세요!';
+    document.getElementsByTagName('head')[0].appendChild(metaDescription);
+
+    // 오픈 그래프 메타 태그
+    const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.content = '브이래닛 - AI 영상 프롬프트 생성기';
+    document.getElementsByTagName('head')[0].appendChild(ogTitle);
+
+    const ogDescription = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.content = '핵심 아이디어만 입력하면 전문가급 영상 프롬프트를 자동 생성해드립니다!';
+    document.getElementsByTagName('head')[0].appendChild(ogDescription);
+  }, []);
+
   // 무료 번역 함수 (MyMemory API)
   const translateText = async (text, fromLang = 'ko', toLang = 'en') => {
     try {
