@@ -3,8 +3,8 @@ import React, { useState, useEffect, useCallback } from "react";
 // 번역/옵션/템플릿은 기존 코드와 동일 (여기선 필수 부분만 유지)
 const translations = {
   ko: {
-    title: "VLANET AI 영상 프롬프트 생성기",
-    subtitle: "핵심 아이디어만 입력하세요. 나머지는 브이래닛이 도와드립니다.",
+    title: "AI 영상 프롬프트 생성기",
+    subtitle: "핵심 아이디어만 입력하세요. 나머지는 브이래닛이 도와드립니다. ✨ 아트 스타일 옵션 추가!",
     mainPromptLabel: "핵심 프롬프트",
     mainPromptPlaceholder: "영상의 주요 장면을 설명해주세요 (예: 해변에서 석양을 바라보는 사람)",
     required: "필수",
@@ -25,10 +25,15 @@ const translations = {
     recentImages: "최근 생성한 이미지 미리보기",
     noImages: "아직 생성된 이미지가 없습니다",
     clickToView: "클릭하여 크게 보기",
+    suggestions: "프롬프트 발전 제안",
+    suggestionDesc: "입력한 아이디어를 3가지 스타일로 발전시켜보세요",
+    romantic: "로맨틱하게",
+    dramatic: "드라마틱하게", 
+    documentary: "다큐멘터리로",
   },
   en: {
-    title: "VLANET AI Video Prompt Generator",
-    subtitle: "Just enter your core idea. V-Ranit will help with the rest.",
+    title: "AI Video Prompt Generator",
+    subtitle: "Just enter your core idea. V-Ranit will help with the rest. ✨ Art Style Options Added!",
     mainPromptLabel: "Core Prompt",
     mainPromptPlaceholder: "Describe the main scene (e.g., A person watching sunset at the beach)",
     required: "Required",
@@ -49,6 +54,11 @@ const translations = {
     recentImages: "Recently Generated Image Previews",
     noImages: "No images generated yet",
     clickToView: "Click to view larger",
+    suggestions: "Prompt Development Suggestions",
+    suggestionDesc: "Develop your idea into 3 different styles",
+    romantic: "Romantic Style",
+    dramatic: "Dramatic Style",
+    documentary: "Documentary Style",
   }
 };
 
@@ -56,15 +66,16 @@ const translations = {
 const VLANET_LOGO = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiPgogIDwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyOS4zLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiAyLjEuMCBCdWlsZCAxNDYpICAtLT4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogIzAwNTlkYjsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogIzFhMWExYTsKICAgICAgfQoKICAgICAgLnN0MiB7CiAgICAgICAgZmlsbDogIzAwNGFjMTsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGc+CiAgICA8cGF0aCBjbGFzcz0ic3QyIiBkPSJNNDgzLjk0LDQ3My40MmgtMjAuMTJjLTEyLjMyLDAtMjEuMzItMTEuNjUtMTguMTktMjMuNTdsNzEuMi0yNjkuNDVjNy40MS0yOC4yNy0xMy45My01NS45MS00My4xNS01NS45MWgtMjA3LjEyYy0yOS44MiwwLTUxLjI0LDI4LjY5LTQyLjc3LDU3LjI4bDEyMS44Niw0MTEuMjhjNS42MSwxOC45NCwyMy4wMiwzMS45NCw0Mi43NywzMS45NGg1NS42N2wzOS44Ni0xNTEuNTZaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNTY4LjcxLDE1Ny42bC0zNS41OSwxMzEuMzljLTMuMzQsMTIuNTQsMi43OSwyNS42NiwxNC41NSwzMS4xNGw2MS40MywyOC42YzE5LjM4LDkuMDIsMjAuODcsMzYuMDEsMi41OSw0Ny4xMWwtMTI3Ljc2LDc3LjU4LTM5Ljg2LDE1MS41NmgyNDguNDVjMTkuNzYsMCwzNy4xNi0xMi45OSw0Mi43Ny0zMS45NGwxMjEuODYtNDExLjI4YzguNDctMjguNTktMTIuOTUtNTcuMjgtNDIuNzctNTcuMjhoLTIwMi41N2MtMjAuMjEsMC0zNy45LDEzLjU5LTQzLjEsMzMuMTJaIi8+CiAgPC9nPgogIDxnPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTIwNy4zLDkyNi4wM2w0MC42MS0xMTYuODdoMzEuNWwtNTQuNjYsMTQzLjQyaC0zNS40bC01NC40LTE0My40MmgzMS43Nmw0MC42MSwxMTYuODdaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzMxLjQ2LDc1OS45N3YxOTIuNjJoLTI5LjY3di0xOTIuNjJoMjkuNjdaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzY5LjU5LDg0MS45NmM1Ljk5LTExLjEsMTQuMTQtMTkuNzQsMjQuNDctMjUuOSwxMC4zMi02LjE2LDIxLjczLTkuMjQsMzQuMjMtOS4yNCwxMS4yOCwwLDIxLjEyLDIuMjEsMjkuNTQsNi42NCw4LjQyLDQuNDMsMTUuMTQsOS45NCwyMC4xNywxNi41M3YtMjAuODJoMjkuOTN2MTQzLjQyaC0yOS45M3YtMjEuMzRjLTUuMDMsNi43Ny0xMS44OSwxMi40MS0yMC41NiwxNi45Mi04LjY4LDQuNTEtMTguNTcsNi43Ny0yOS42Nyw2Ljc3LTEyLjMyLDAtMjMuNi0zLjE2LTMzLjg0LTkuNS0xMC4yNC02LjMzLTE4LjM1LTE1LjE4LTI0LjM0LTI2LjU1LTUuOTktMTEuMzYtOC45OC0yNC4yNS04Ljk4LTM4LjY1czIuOTktMjcuMTYsOC45OC0zOC4yNlpNNDcxLjg4LDg1NC45N2MtNC4wOC03LjI5LTkuNDItMTIuODQtMTYuMDEtMTYuNjYtNi42LTMuODItMTMuNzEtNS43My0yMS4zNC01Ljczcy0xNC43NSwxLjg3LTIxLjM0LDUuNmMtNi42LDMuNzMtMTEuOTMsOS4yLTE2LjAxLDE2LjQtNC4wOCw3LjItNi4xMiwxNS43NS02LjEyLDI1LjY0czIuMDQsMTguNTcsNi4xMiwyNi4wM2M0LjA4LDcuNDYsOS40NiwxMy4xNCwxNi4xNCwxNy4wNWM2LjY4LDMuOSwxMy43NSw1Ljg2LDIxLjIxLDUuODZzMTQuNzUtMS45MSwyMS4zNC01LjczYzYuNTktMy44MSwxMS45My05LjQxLDE2LjAxLTE2Ljc5LDQuMDgtNy4zNyw2LjEyLTE2LjAxLDYuMTItMjUuOXMtMi4wNC0xOC40OC02LjEyLTI1Ljc3WiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTY0OS42Niw4MTMuODVjOC45Myw0LjY5LDE1LjkyLDExLjYzLDIwLjk1LDIwLjgyLDUuMDMsOS4yLDcuNTUsMjAuMyw3LjU1LDMzLjMydjg0LjU5aC0yOS40MXYtODAuMTdjMC0xMi44NC0zLjIxLTIyLjY5LTkuNjMtMjkuNTQtNi40Mi02Ljg1LTE1LjE5LTEwLjI4LTI2LjI5LTEwLjI4cy0xOS45MSwzLjQzLTI2LjQyLDEwLjI4Yy02LjUxLDYuODYtOS43NiwxNi43LTkuNzYsMjkuNTR2ODAuMTdoLTI5LjY3di0xNDMuNDJoMjkuNjd2MTYuNGM0Ljg2LTUuOSwxMS4wNi0xMC41LDE4LjYxLTEzLjgsNy41NS0zLjI5LDE1LjU3LTQuOTUsMjQuMDgtNC45NSwxMS4yOCwwLDIxLjM4LDIuMzQsMzAuMzIsNy4wM1oiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik04NDYuMzEsODkxLjkzaC0xMDkuNThjLjg3LDExLjQ1LDUuMTIsMjAuNjUsMTIuNzYsMjcuNTksNy42Myw2Ljk0LDE3LDEwLjQxLDI4LjExLDEwLjQxLDE1Ljk2LDAsMjcuMjQtNi42OCwzMy44NC0yMC4wNGgzMi4wMmMtNC4zNCwxMy4xOS0xMi4xOSwyMy45OS0yMy41NiwzMi40MS0xMS4zNyw4LjQyLTI1LjQ3LDEyLjYyLTQyLjMsMTIuNjItMTMuNzEsMC0yNS45OS0zLjA4LTM2LjgzLTkuMjQtMTAuODUtNi4xNi0xOS4zNS0xNC44NC0yNS41MS0yNi4wMy02LjE2LTExLjE5LTkuMjQtMjQuMTYtOS4yNC0zOC45MXMyLjk5LTI3LjcyLDguOTgtMzguOTFjNS45OS0xMS4xOSwxNC40LTE5LjgyLDI1LjI1LTI1LjksMTAuODQtNi4wNywyMy4zLTkuMTEsMzcuMzUtOS4xMXMyNS41OSwyLjk1LDM2LjE4LDguODVjMTAuNTgsNS45LDE4LjgzLDE0LjE5LDI0LjczLDI0Ljg2LDUuOSwxMC42Nyw4Ljg1LDIyLjk1LDguODUsMzYuODMsMCw1LjM4LS4zNSwxMC4yNC0xLjA0LDE0LjU4Wk04MTYuMzgsODY3Ljk5Yy0uMTgtMTAuOTMtNC4wOC0xOS42OS0xMS43MS0yNi4yOS03LjY0LTYuNTktMTcuMDktOS44OS0yOC4zNy05Ljg5LTEwLjI0LDAtMTksMy4yNS0yNi4yOSw9Ljc2LTcuMjksNi41MS0xMS42MywxNS4zMi0xMy4wMiwyNi40Mmg3OS4zOVoiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik05MTEuMTIsODMzLjM3djc5LjM5YzAsNS4zOCwxLjI2LDkuMjQsMy43OCwxMS41OCwyLjUxLDIuMzQsNi44MSwzLjUxLDEyLjg4LDMuNTFoMTguMjJ2MjQuNzNoLTIzLjQzYy0xMy4zNiwwLTIzLjYtMy4xMi0zMC43MS05LjM3LTcuMTItNi4yNS0xMC42Ny0xNi40LTEwLjY3LTMwLjQ1di03OS4zOWgtMTYuOTJ2LTI0LjIxaDE2Ljkydi0zNS42NmgyOS45M3YzNS42NmgzNC44OHYyNC4yMWgtMzQuODhaIi8+CiAgPC9nPgo8L3N2Zz4=";
 
 const optionCategories = [
-  { id: "camera", label: { ko: "카메라", en: "Camera" }, tooltip: { ko: "전문 영화 제작에 사용되는 카메라를 선택하세요", en: "Select professional cameras used in film production" }, options: [ 'Arri Alexa Mini', 'RED Komodo 6K', 'Sony FX3', 'Blackmagic URSA Mini', 'Canon C300 Mark III', 'Panasonic EVA1', 'Sony Venice', 'RED V-Raptor', 'Arri Amira', 'Canon R5C', 'Z CAM E2-F6' ] },
-  { id: "lens", label: { ko: "렌즈", en: "Lens" }, tooltip: { ko: "원하는 화각과 깊이감을 위한 렌즈를 선택하세요", en: "Select lens for desired field of view and depth" }, options: [ '35mm f1.4', '50mm f1.2', '85mm f1.8', '24-70mm f2.8', '18-35mm', '16mm Fisheye', '135mm', '70-200mm', '14mm', '100mm Macro', '12mm Ultra Wide' ] },
-  { id: "movement", label: { ko: "카메라 워킹", en: "Camera Movement" }, tooltip: { ko: "카메라의 움직임을 선택하세요", en: "Select camera movement style" }, options: [ 'Handheld', 'Steadicam', 'Dolly In', 'Dolly Out', 'Crane Up', 'Crane Down', 'Slider Left', 'Slider Right', 'Drone Shot', 'Static Tripod', 'Gimbal Orbit', 'POV Shot' ] },
-  { id: "composition", label: { ko: "구도", en: "Composition" }, tooltip: { ko: "화면 구성 방식을 선택하세요", en: "Select composition technique" }, options: [ 'Rule of Thirds', 'Center Composition', 'Symmetry', 'Leading Lines', 'Low Angle', 'High Angle', 'Over-the-Shoulder', 'Wide Shot', 'Close-up', 'Dutch Angle', 'Negative Space' ] },
-  { id: "lighting", label: { ko: "조명", en: "Lighting" }, tooltip: { ko: "조명 스타일을 선택하세요", en: "Select lighting style" }, options: [ 'Natural Light', 'Low Key', 'High Key', 'Rembrandt', 'Backlight', 'Silhouette', 'Color Gel', 'Softbox', 'Hard Light', 'Practical Light', 'Golden Hour' ] },
-  { id: "color", label: { ko: "색감", en: "Color" }, tooltip: { ko: "색감 스타일을 선택하세요", en: "Select color grading style" }, options: [ 'Warm', 'Cool', 'Neutral', 'Muted', 'Vivid', 'Black & White', 'Analog Film', 'Sepia', 'Monochrome', 'Cinematic Teal-Orange', 'Retro' ] },
-  { id: "tone", label: { ko: "톤/매너", en: "Tone/Mood" }, tooltip: { ko: "영상의 분위기를 선택하세요", en: "Select video mood and tone" }, options: [ 'Cinematic', 'Dramatic', 'Comedic', 'Romantic', 'Moody', 'Bright', 'Noir', 'Surreal', 'Realistic', 'Epic', 'Dreamlike' ] },
-  { id: "time", label: { ko: "시간", en: "Time" }, tooltip: { ko: "시간대를 선택하세요", en: "Select time of day" }, options: [ 'Day', 'Night', 'Golden Hour', 'Sunset', 'Sunrise', 'Blue Hour', 'Rainy', 'Foggy', 'Midday', 'Twilight', 'Afternoon' ] },
-  { id: "era", label: { ko: "시대", en: "Era" }, tooltip: { ko: "시대 배경을 선택하세요", en: "Select time period setting" }, options: [ 'Modern', '1980s', '1990s', '2000s', 'Victorian', 'Medieval', 'Futuristic', 'Ancient Greece', 'Joseon Dynasty', 'Cyberpunk', 'Retro 70s' ] },
+  { id: "camera", label: { ko: "카메라", en: "Camera" }, tooltip: { ko: "전문 영화 제작에 사용되는 카메라를 선택하세요", en: "Select professional cameras used in film production" }, options: [ 'Arri Alexa Mini', 'RED Komodo 6K', 'Sony FX3', 'Canon C300 Mark III', 'Sony Venice', 'Blackmagic URSA Mini', 'RED V-Raptor', 'Canon R5C', 'Sony FX6', 'Panasonic EVA1', 'Z CAM E2-F6', 'Arri Amira' ] },
+  { id: "lens", label: { ko: "렌즈", en: "Lens" }, tooltip: { ko: "원하는 화각과 깊이감을 위한 렌즈를 선택하세요", en: "Select lens for desired field of view and depth" }, options: [ '35mm f1.4', '50mm f1.2', '85mm f1.8', '24-70mm f2.8', '16mm Wide', '135mm Telephoto', '14mm Ultra Wide', '100mm Macro', '70-200mm f2.8', '24mm f1.4', '18-35mm Zoom', '200mm f2.8' ] },
+  { id: "movement", label: { ko: "카메라 워킹", en: "Camera Movement" }, tooltip: { ko: "카메라의 움직임을 선택하세요", en: "Select camera movement style" }, options: [ 'Handheld', 'Steadicam', 'Dolly In', 'Dolly Out', 'Drone Shot', 'Static Shot', 'Gimbal Orbit', 'Crane Up', 'Crane Down', 'Slider Left', 'Slider Right', 'POV Shot', 'Tracking Shot', 'Jib Movement' ] },
+  { id: "composition", label: { ko: "구도", en: "Composition" }, tooltip: { ko: "화면 구성 방식을 선택하세요", en: "Select composition technique" }, options: [ 'Rule of Thirds', 'Center Composition', 'Low Angle', 'High Angle', 'Close-up', 'Wide Shot', 'Medium Shot', 'Over-the-Shoulder', 'Dutch Angle', 'Symmetry', 'Leading Lines', 'Negative Space' ] },
+  { id: "lighting", label: { ko: "조명", en: "Lighting" }, tooltip: { ko: "조명 스타일을 선택하세요", en: "Select lighting style" }, options: [ 'Natural Light', 'Golden Hour', 'Low Key', 'High Key', 'Backlight', 'Soft Light', 'Hard Light', 'Rembrandt Light', 'Color Gel', 'Practical Light', 'Ring Light', 'Studio Light', 'Candle Light', 'Neon Light' ] },
+  { id: "color", label: { ko: "색감", en: "Color" }, tooltip: { ko: "색감 스타일을 선택하세요", en: "Select color grading style" }, options: [ 'Warm', 'Cool', 'Neutral', 'Vivid', 'Muted', 'Cinematic Teal-Orange', 'Black & White', 'Sepia', 'Analog Film', 'Retro', 'Desaturated', 'High Contrast', 'Pastel', 'Monochrome' ] },
+  { id: "tone", label: { ko: "톤/매너", en: "Tone/Mood" }, tooltip: { ko: "영상의 분위기를 선택하세요", en: "Select video mood and tone" }, options: [ 'Cinematic', 'Dramatic', 'Bright', 'Moody', 'Romantic', 'Epic', 'Mysterious', 'Energetic', 'Peaceful', 'Nostalgic', 'Surreal', 'Realistic', 'Dreamy', 'Intense' ] },
+  { id: "time", label: { ko: "시간/날씨", en: "Time/Weather" }, tooltip: { ko: "시간대와 날씨를 선택하세요", en: "Select time of day and weather" }, options: [ 'Golden Hour', 'Day', 'Night', 'Sunset', 'Sunrise', 'Blue Hour', 'Rainy', 'Foggy', 'Snowy', 'Stormy', 'Overcast', 'Clear Sky', 'Twilight', 'Dawn', 'Midday' ] },
+  { id: "style", label: { ko: "아트 스타일", en: "Art Style" }, tooltip: { ko: "영상의 아트 스타일을 선택하세요", en: "Select the art style for your video" }, options: [ 'Photorealistic', 'Pixar 3D Animation', 'Disney 2D Animation', 'Anime Style', 'Studio Ghibli', 'Cartoon Style', 'Watercolor Painting', 'Oil Painting', 'Pencil Sketch', 'Digital Art', 'Pixel Art', 'Clay Animation', 'Paper Cutout', 'Comic Book Style', 'Minimalist Illustration' ] },
+  { id: "resolution", label: { ko: "해상도/포맷", en: "Resolution/Format" }, tooltip: { ko: "영상 해상도와 용도를 선택하세요", en: "Select video resolution and purpose" }, options: [ '4K Cinematic', '1080p Standard', 'Instagram 9:16', 'YouTube 16:9', 'TikTok Square', '8K Ultra', 'Cinematic 2.35:1', 'Widescreen 21:9', 'Portrait 4:5', 'Classic 4:3', 'Ultra Wide 32:9', 'Mobile Vertical' ] }
 ];
 
 const templates = [
@@ -73,7 +84,7 @@ const templates = [
     settings: {
       camera: "Arri Alexa Mini", lens: "35mm f1.4", movement: "Dolly In",
       composition: "Rule of Thirds", lighting: "Golden Hour", color: "Cinematic Teal-Orange",
-      tone: "Cinematic", time: "Golden Hour", era: "Modern"
+      tone: "Cinematic", time: "Golden Hour", style: "Photorealistic", resolution: "4K Cinematic"
     }
   },
   {
@@ -81,23 +92,39 @@ const templates = [
     settings: {
       camera: "Sony FX3", lens: "24-70mm f2.8", movement: "Handheld",
       composition: "Center Composition", lighting: "Natural Light", color: "Neutral",
-      tone: "Realistic", time: "Day", era: "Modern"
+      tone: "Bright", time: "Day", style: "Photorealistic", resolution: "1080p Standard"
     }
   },
   {
     name: { ko: "뮤직비디오", en: "Music Video" },
     settings: {
       camera: "RED Komodo 6K", lens: "50mm f1.2", movement: "Gimbal Orbit",
-      composition: "Dutch Angle", lighting: "Color Gel", color: "Vivid",
-      tone: "Surreal", time: "Night", era: "Modern"
+      composition: "Low Angle", lighting: "Backlight", color: "Vivid",
+      tone: "Dramatic", time: "Night", style: "Digital Art", resolution: "4K Cinematic"
     }
   },
   {
-    name: { ko: "광고", en: "Commercial" },
+    name: { ko: "소셜미디어", en: "Social Media" },
     settings: {
-      camera: "Canon C300 Mark III", lens: "85mm f1.8", movement: "Slider Left",
-      composition: "Center Composition", lighting: "High Key", color: "Warm",
-      tone: "Bright", time: "Day", era: "Modern"
+      camera: "Sony FX3", lens: "35mm f1.4", movement: "Static Shot",
+      composition: "Center Composition", lighting: "Natural Light", color: "Warm",
+      tone: "Bright", time: "Day", style: "Photorealistic", resolution: "Instagram 9:16"
+    }
+  },
+  {
+    name: { ko: "애니메이션", en: "Animation" },
+    settings: {
+      camera: "Sony FX3", lens: "50mm f1.2", movement: "Steadicam",
+      composition: "Rule of Thirds", lighting: "Soft Light", color: "Vivid",
+      tone: "Energetic", time: "Day", style: "Pixar 3D Animation", resolution: "4K Cinematic"
+    }
+  },
+  {
+    name: { ko: "아니메", en: "Anime" },
+    settings: {
+      camera: "Canon C300 Mark III", lens: "85mm f1.8", movement: "Static Shot",
+      composition: "Center Composition", lighting: "Soft Light", color: "Vivid",
+      tone: "Dramatic", time: "Sunset", style: "Anime Style", resolution: "YouTube 16:9"
     }
   }
 ];
@@ -120,6 +147,7 @@ function App() {
   const [sdError, setSdError] = useState("");
   const [translating, setTranslating] = useState(false);
   const [imageHistory, setImageHistory] = useState([]);
+  const [promptSuggestions, setPromptSuggestions] = useState([]);
 
   const t = translations[lang];
   const selectedCount = Object.values(selections).filter(Boolean).length;
@@ -143,6 +171,34 @@ function App() {
     return /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(text);
   };
 
+  // 프롬프트 발전 제안 생성
+  const generatePromptSuggestions = (basePrompt) => {
+    if (!basePrompt.trim()) {
+      setPromptSuggestions([]);
+      return;
+    }
+
+    const suggestions = [
+      {
+        type: 'romantic',
+        label: t.romantic,
+        prompt: `${basePrompt}, romantic atmosphere, soft golden lighting, intimate close-up shots, gentle camera movements, warm color palette, emotional connection, dreamy bokeh background`
+      },
+      {
+        type: 'dramatic', 
+        label: t.dramatic,
+        prompt: `${basePrompt}, dramatic tension, high contrast lighting, dynamic camera angles, intense close-ups, bold color grading, cinematic shadows, powerful composition`
+      },
+      {
+        type: 'documentary',
+        label: t.documentary, 
+        prompt: `${basePrompt}, documentary style, natural lighting, handheld camera movement, realistic approach, authentic moments, neutral color grading, observational perspective`
+      }
+    ];
+
+    setPromptSuggestions(suggestions);
+  };
+
   // 템플릿 적용
   const applyTemplate = (template) => {
     setMainPrompt("");
@@ -164,6 +220,13 @@ function App() {
     setSdError("");
     setTranslating(false);
     setImageHistory([]);
+    setPromptSuggestions([]);
+  };
+
+  // 프롬프트 제안 선택
+  const selectSuggestion = (suggestion) => {
+    setMainPrompt(suggestion.prompt);
+    setPromptSuggestions([]); // 제안 목록 숨기기
   };
 
   // 프롬프트 미리보기 생성 (한글 자동 번역 포함)
@@ -171,6 +234,7 @@ function App() {
     const generatePreview = async () => {
       if (!mainPrompt.trim() && Object.values(selections).every(val => !val)) {
         setPreview("");
+        setPromptSuggestions([]);
         return;
       }
       
@@ -186,6 +250,11 @@ function App() {
         }
         setTranslating(false);
       }
+
+      // 프롬프트 제안 생성 (번역된 텍스트로)
+      if (processedMainPrompt) {
+        generatePromptSuggestions(processedMainPrompt);
+      }
       
       let generatedPreview = processedMainPrompt;
       const cameraVal = selections.camera || "";
@@ -200,7 +269,7 @@ function App() {
           generatedPreview += `shot with ${lensVal} lens`;
         }
       }
-      const detailCategories = ["movement", "composition", "lighting", "color", "tone", "time", "era"];
+      const detailCategories = ["movement", "composition", "lighting", "color", "tone", "time", "style", "resolution"];
       detailCategories.forEach(catId => {
         if (selections[catId]) {
           if (generatedPreview) generatedPreview += ", ";
@@ -212,7 +281,8 @@ function App() {
           else if (catId === "color") suffix = " color grading";
           else if (catId === "tone") suffix = " mood";
           else if (catId === "time") { prefix = "during"; }
-          else if (catId === "era") suffix = " era setting";
+          else if (catId === "style") { prefix = "in"; suffix = " style"; }
+          else if (catId === "resolution") { prefix = "in"; suffix = " quality"; }
           generatedPreview += `${prefix} ${selections[catId].toLowerCase()}${suffix}`;
         }
       });
@@ -379,7 +449,7 @@ function App() {
                     letterSpacing: '-0.5px',
                     fontFamily: 'system-ui, -apple-system, sans-serif'
                   }}>
-                    VLANET
+                    브이래닛
                   </div>
                   <div style={{
                     fontSize: '10px',
@@ -388,7 +458,7 @@ function App() {
                     marginTop: '-2px',
                     letterSpacing: '0.5px'
                   }}>
-                    AI CONTENTS CREATOR
+                    VIDEO AI
                   </div>
                 </div>
               </div>
@@ -550,6 +620,68 @@ function App() {
               }}>
                 🌐 {t.translationNote}
               </div>
+
+              {/* 프롬프트 발전 제안 */}
+              {promptSuggestions.length > 0 && (
+                <div style={{
+                  marginTop: '15px',
+                  padding: '15px',
+                  background: '#f0f8ff',
+                  borderRadius: '10px',
+                  border: '1px solid #e0e8f0'
+                }}>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    color: '#333',
+                    marginBottom: '10px'
+                  }}>
+                    💡 {t.suggestions}
+                  </div>
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#666',
+                    marginBottom: '12px'
+                  }}>
+                    {t.suggestionDesc}
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    gap: '8px',
+                    flexWrap: 'wrap'
+                  }}>
+                    {promptSuggestions.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        onClick={() => selectSuggestion(suggestion)}
+                        style={{
+                          padding: '8px 16px',
+                          border: 'none',
+                          borderRadius: '20px',
+                          background: suggestion.type === 'romantic' ? '#ff6b9d' : 
+                                    suggestion.type === 'dramatic' ? '#c44569' : '#45aaf2',
+                          color: 'white',
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                        }}
+                        onMouseOver={(e) => {
+                          e.target.style.transform = 'translateY(-2px)';
+                          e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+                        }}
+                        onMouseOut={(e) => {
+                          e.target.style.transform = 'translateY(0)';
+                          e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                        }}
+                      >
+                        {suggestion.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div style={{ 
