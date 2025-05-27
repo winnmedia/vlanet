@@ -92,14 +92,14 @@ const templates = [
     settings: {
       camera: "Sony FX3", lens: "24-70mm f2.8", movement: "Handheld",
       composition: "Center Composition", lighting: "Natural Light", color: "Neutral",
-      tone: "Bright", time: "Day", style: "Photorealistic", resolution: "1080p Standard"
+      tone: "Realistic", time: "Day", style: "Photorealistic", resolution: "1080p Standard"
     }
   },
   {
     name: { ko: "뮤직비디오", en: "Music Video" },
     settings: {
       camera: "RED Komodo 6K", lens: "50mm f1.2", movement: "Gimbal Orbit",
-      composition: "Low Angle", lighting: "Backlight", color: "Vivid",
+      composition: "Low Angle", lighting: "Color Gel", color: "Vivid",
       tone: "Dramatic", time: "Night", style: "Digital Art", resolution: "4K Cinematic"
     }
   },
@@ -112,19 +112,51 @@ const templates = [
     }
   },
   {
-    name: { ko: "애니메이션", en: "Animation" },
+    name: { ko: "3D 애니메이션", en: "3D Animation" },
     settings: {
-      camera: "Sony FX3", lens: "50mm f1.2", movement: "Steadicam",
+      camera: "Canon C300 Mark III", lens: "50mm f1.2", movement: "Steadicam",
       composition: "Rule of Thirds", lighting: "Soft Light", color: "Vivid",
       tone: "Energetic", time: "Day", style: "Pixar 3D Animation", resolution: "4K Cinematic"
     }
   },
   {
-    name: { ko: "아니메", en: "Anime" },
+    name: { ko: "애니메이션", en: "Anime Animation" },
     settings: {
-      camera: "Canon C300 Mark III", lens: "85mm f1.8", movement: "Static Shot",
-      composition: "Center Composition", lighting: "Soft Light", color: "Vivid",
+      camera: "Sony Venice", lens: "85mm f1.8", movement: "Static Shot",
+      composition: "Center Composition", lighting: "Backlight", color: "Vivid",
       tone: "Dramatic", time: "Sunset", style: "Anime Style", resolution: "YouTube 16:9"
+    }
+  },
+  {
+    name: { ko: "광고/상업", en: "Commercial" },
+    settings: {
+      camera: "Canon C300 Mark III", lens: "24-70mm f2.8", movement: "Slider Right",
+      composition: "Center Composition", lighting: "High Key", color: "Warm",
+      tone: "Bright", time: "Day", style: "Photorealistic", resolution: "YouTube 16:9"
+    }
+  },
+  {
+    name: { ko: "아트/예술", en: "Artistic" },
+    settings: {
+      camera: "Sony FX6", lens: "135mm Telephoto", movement: "Static Shot",
+      composition: "Symmetry", lighting: "Soft Light", color: "Pastel",
+      tone: "Peaceful", time: "Blue Hour", style: "Watercolor Painting", resolution: "4K Cinematic"
+    }
+  },
+  {
+    name: { ko: "액션/스포츠", en: "Action/Sports" },
+    settings: {
+      camera: "RED V-Raptor", lens: "16mm Wide", movement: "Drone Shot",
+      composition: "Low Angle", lighting: "Hard Light", color: "High Contrast",
+      tone: "Epic", time: "Day", style: "Photorealistic", resolution: "4K Cinematic"
+    }
+  },
+  {
+    name: { ko: "로맨스/감성", en: "Romance/Emotional" },
+    settings: {
+      camera: "Arri Amira", lens: "85mm f1.8", movement: "Dolly Out",
+      composition: "Close-up", lighting: "Golden Hour", color: "Warm",
+      tone: "Romantic", time: "Sunset", style: "Oil Painting", resolution: "Cinematic 2.35:1"
     }
   }
 ];
