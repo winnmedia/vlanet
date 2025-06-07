@@ -1,3 +1,7 @@
+# Vlanet AI 광고 플랫폼 데모
+
+간단한 UI를 통해 제품 사진 업로드와 모델 얼굴 선택 등을 시뮬레이션하는 데모입니다. 실제 AI 합성 기능은 포함되어 있지 않습니다.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

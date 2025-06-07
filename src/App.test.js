@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import ProductAdGenerator from './ProductAdGenerator';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders generator heading', () => {
+  render(<ProductAdGenerator />);
+  const heading = screen.getByText(/AI 광고 영상 생성/i);
+  expect(heading).toBeInTheDocument();
 });
